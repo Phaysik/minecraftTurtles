@@ -50,7 +50,7 @@ end
 local stats = require("checkStats.lua")
 
 -- GLOBALS
-local DEBUG = false
+local DEBUG = true
 local STAT_OUTPUT_FILE = "statsOutput.json"
 
 local function main()
