@@ -34,15 +34,19 @@ function stats.getStats(peripheral, outputFile, fileMode, type, debug)
     return chickenStats
 end
 
-function stats.getRoostStats(completeStats, outputFile, fileMode, type, debug)
+function stats.getRoostStats(completeStats, outputFile, fileMode, type, inventoryPosition, debug)
     local file = fs.open(outputFile, fileMode)
 
     local roostStats = {}
 
     for _, value in pairs(completeStats) do
-        table.insert(roostStats, value["roost"])
+        local statPosition = { ["roost"] = value["roost"], ["position"] = inventoryPosition } -- Concatenate the roost values and the position in the turtle's inventory
+
+        inventoryPosition = inventoryPosition + 1
+
+        table.insert(roostStats, statPosition)
         if debug then
-            file.write("Type: " .. type .. "\n" .. value["roost"] .. "\n")
+            file.write("Type: " .. type .. "\n" .. textutils.serialize(statPosition) .. "\n")
         end
     end
 

@@ -48,21 +48,19 @@ end
 
 -- IMPORTS
 local stats = require("checkStats.lua")
-
--- GLOBALS
-local DEBUG = true
-local STAT_COMPLETE_FILE = "statsComplete.json"
-local STAT_ROOST_FILE = "statsRoost.json"
+local globals = require("globals.lua")
 
 local function main()
     -- TODO Need to use something to calculate the position of the turtle and the move it to the absolute position of the breeder before calling this method
     local chickenBreeder = peripheral.wrap("front")
 
-    local parentStats = stats.getStats(chickenBreeder, STAT_COMPLETE_FILE, "w", "parents", DEBUG)
-    local offspringStats = stats.getStats(chickenBreeder, STAT_COMPLETE_FILE, "a", "offspring", DEBUG)
+    local parentStats = stats.getStats(chickenBreeder, globals.STAT_COMPLETE_FILE, "w", "parents", globals.DEBUG)
+    local offspringStats = stats.getStats(chickenBreeder, globals.STAT_COMPLETE_FILE, "a", "offspring", globals.DEBUG)
 
-    local roostParentStats = stats.getRoostStats(parentStats, STAT_ROOST_FILE, "w", "parents", DEBUG)
-    local roostoffspringStats = stats.getRoostStats(offspringStats, STAT_ROOST_FILE, "a", "offspring", DEBUG)
+    -- TODO Get the earliest open spots in the turtles inventory and then pass it to the getRoostStats function, and make sure that there are three open slots in a row
+    local roostParentStats = stats.getRoostStats(parentStats, globals.STAT_ROOST_FILE, "w", "parents", 1, globals.DEBUG)
+    local roostoffspringStats = stats.getRoostStats(offspringStats, globals.STAT_ROOST_FILE, "a", "offspring", 1,
+        globals.DEBUG)
 
     -- TODO get the two highest stats from the offspring stats and then compare against the parent stats
 end
