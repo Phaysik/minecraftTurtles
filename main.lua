@@ -49,6 +49,10 @@ end
 
 local stats = require("checkStats.lua")
 
-local chest = peripheral.wrap("front")
+local debug = false
+local statOutputFile = "statsOutput.json"
 
-stats.getStats(chest, "output.json")
+-- TODO Need to use something to calculate the position of the turtle and the move it to the absolute position of the breeder before calling this method
+local chickenBreeder = peripheral.wrap("front")
+
+print(textutils.serialize(stats.getStats(chickenBreeder, statOutputFile, debug)))
