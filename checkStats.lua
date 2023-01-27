@@ -12,6 +12,7 @@ function stats.getStats(peripheral, outputFile, fileMode, type, debug)
 
     local chickenStats = {}
 
+    -- Offspring are last three spots in the chicken breeder, while parents are the second and third slots
     local startIndex = type == "offspring" and 4 or 1
     local endIndex = type == "offspring" and 6 or 2
 
@@ -31,6 +32,21 @@ function stats.getStats(peripheral, outputFile, fileMode, type, debug)
     file.close()
 
     return chickenStats
+end
+
+function stats.getRoostStats(completeStats, outputFile, fileMode, debug)
+    local file = fs.open(outputFile, fileMode)
+
+    local roostStats = {}
+
+    for _, value in pairs(completeStats) do
+        table.insert(roostStats, value)
+        if debug then
+            file.write(value)
+        end
+    end
+
+    return roostStats
 end
 
 return stats

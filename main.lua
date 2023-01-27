@@ -51,14 +51,18 @@ local stats = require("checkStats.lua")
 
 -- GLOBALS
 local DEBUG = true
-local STAT_OUTPUT_FILE = "statsOutput.json"
+local STAT_COMPLETE_FILE = "statsComplete.json"
+local STAT_ROOST_FILE = "statsRoost.json"
 
 local function main()
     -- TODO Need to use something to calculate the position of the turtle and the move it to the absolute position of the breeder before calling this method
     local chickenBreeder = peripheral.wrap("front")
 
-    local parentStats = stats.getStats(chickenBreeder, STAT_OUTPUT_FILE, "w", "parents", DEBUG)
-    local offspringStats = stats.getStats(chickenBreeder, STAT_OUTPUT_FILE, "a", "offspring", DEBUG)
+    local parentStats = stats.getStats(chickenBreeder, STAT_COMPLETE_FILE, "w", "parents", DEBUG)
+    local offspringStats = stats.getStats(chickenBreeder, STAT_COMPLETE_FILE, "a", "offspring", DEBUG)
+
+    local roostParentStats = stats.getRoostStats(parentStats, STAT_ROOST_FILE, "w", DEBUG)
+    local roostoffspringStats = stats.getRoostStats(offspringStats, STAT_ROOST_FILE, "a", DEBUG)
 end
 
 main()
