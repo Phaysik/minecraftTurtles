@@ -15,7 +15,7 @@ local requesting = true
 
 local debug = false
 
-local file = fs.open("siteInfo.json", "w") -- Febug file
+local file = fs.open("siteInfo.json", "w") -- Debug file
 
 while requesting do
     ---@diagnostic disable-next-line: undefined-field
