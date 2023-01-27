@@ -61,8 +61,10 @@ local function main()
     local parentStats = stats.getStats(chickenBreeder, STAT_COMPLETE_FILE, "w", "parents", DEBUG)
     local offspringStats = stats.getStats(chickenBreeder, STAT_COMPLETE_FILE, "a", "offspring", DEBUG)
 
-    local roostParentStats = stats.getRoostStats(parentStats, STAT_ROOST_FILE, "w", DEBUG)
-    local roostoffspringStats = stats.getRoostStats(offspringStats, STAT_ROOST_FILE, "a", DEBUG)
+    local roostParentStats = stats.getRoostStats(parentStats, STAT_ROOST_FILE, "w", "parents", DEBUG)
+    local roostoffspringStats = stats.getRoostStats(offspringStats, STAT_ROOST_FILE, "a", "offspring", DEBUG)
+
+    -- TODO get the two highest stats from the offspring stats and then compare against the parent stats
 end
 
 main()

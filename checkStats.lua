@@ -34,17 +34,19 @@ function stats.getStats(peripheral, outputFile, fileMode, type, debug)
     return chickenStats
 end
 
-function stats.getRoostStats(completeStats, outputFile, fileMode, debug)
+function stats.getRoostStats(completeStats, outputFile, fileMode, type, debug)
     local file = fs.open(outputFile, fileMode)
 
     local roostStats = {}
 
     for _, value in pairs(completeStats) do
-        table.insert(roostStats, value)
+        table.insert(roostStats, value["roost"])
         if debug then
-            file.write(value)
+            file.write("Type: " .. type .. "\n" .. value["roost"] .. "\n")
         end
     end
+
+    file.close()
 
     return roostStats
 end
