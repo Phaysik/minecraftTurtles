@@ -1,3 +1,10 @@
+-- Author: Matthew Moore
+-- File: main.lua
+-- Brief: Lua file for handling the automation of breeding chickens.
+-- Date: 01/27/2023
+-- Version: 1.0
+
+-- START CODE STEALING
 local require
 
 do
@@ -37,6 +44,8 @@ do
         return result
     end
 end
+
+-- END CODE STEALING
 
 local stats = require("checkStats.lua")
 
