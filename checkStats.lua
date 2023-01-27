@@ -7,16 +7,19 @@
 
 local stats = {}
 
-function stats.getStats(peripheral, outputFile, debug)
+function stats.getStats(peripheral, outputFile, type, debug)
     local file = fs.open(outputFile, "w")
 
     local chickenStats = {}
 
-    for i = 4, 6 do
+    local startIndex = type == "offspring" and 2 or 4
+    local endIndex = type == "offspring" and 3 or 6
+
+    for i = startIndex, endIndex do
         if peripheral.getItemMeta(i) then -- Needs the Plethora mod to access the NBT data through this method call
             table.insert(chickenStats, peripheral.getItemMeta(i))
             if debug then
-                file.write(textutils.serialize(peripheral.getItemMeta(i)))
+                file.write("Type: " .. type .. textutils.serialize(peripheral.getItemMeta(i)))
             end
         else
             if debug then

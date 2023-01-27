@@ -44,15 +44,21 @@ do
         return result
     end
 end
-
 -- END CODE STEALING
 
+-- IMPORTS
 local stats = require("checkStats.lua")
 
-local debug = false
-local statOutputFile = "statsOutput.json"
+-- GLOBALS
+local DEBUG = false
+local STAT_OUTPUT_FILE = "statsOutput.json"
 
--- TODO Need to use something to calculate the position of the turtle and the move it to the absolute position of the breeder before calling this method
-local chickenBreeder = peripheral.wrap("front")
+local function main()
+    -- TODO Need to use something to calculate the position of the turtle and the move it to the absolute position of the breeder before calling this method
+    local chickenBreeder = peripheral.wrap("front")
 
-print(textutils.serialize(stats.getStats(chickenBreeder, statOutputFile, debug)))
+    local parentStats = stats.getStats(chickenBreeder, STAT_OUTPUT_FILE, "parents", DEBUG)
+    local offspringStats = stats.getStats(chickenBreeder, STAT_OUTPUT_FILE, "offspring", DEBUG)
+end
+
+main()
