@@ -7,8 +7,8 @@
 
 local stats = {}
 
-function stats.getStats(peripheral, outputFile, type, debug)
-    local file = fs.open(outputFile, "w")
+function stats.getStats(peripheral, outputFile, fileMode, type, debug)
+    local file = fs.open(outputFile, fileMode)
 
     local chickenStats = {}
 
@@ -19,7 +19,7 @@ function stats.getStats(peripheral, outputFile, type, debug)
         if peripheral.getItemMeta(i) then -- Needs the Plethora mod to access the NBT data through this method call
             table.insert(chickenStats, peripheral.getItemMeta(i))
             if debug then
-                file.write("Type: " .. type .. textutils.serialize(peripheral.getItemMeta(i)))
+                file.write("Type: " .. type .. "\n" .. textutils.serialize(peripheral.getItemMeta(i)))
             end
         else
             if debug then

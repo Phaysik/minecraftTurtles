@@ -57,8 +57,8 @@ local function main()
     -- TODO Need to use something to calculate the position of the turtle and the move it to the absolute position of the breeder before calling this method
     local chickenBreeder = peripheral.wrap("front")
 
-    local parentStats = stats.getStats(chickenBreeder, STAT_OUTPUT_FILE, "parents", DEBUG)
-    local offspringStats = stats.getStats(chickenBreeder, STAT_OUTPUT_FILE, "offspring", DEBUG)
+    local parentStats = stats.getStats(chickenBreeder, STAT_OUTPUT_FILE, "w", "parents", DEBUG)
+    local offspringStats = stats.getStats(chickenBreeder, STAT_OUTPUT_FILE, "a", "offspring", DEBUG)
 end
 
 main()
