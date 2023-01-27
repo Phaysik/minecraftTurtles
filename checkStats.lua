@@ -12,8 +12,8 @@ function stats.getStats(peripheral, outputFile, fileMode, type, debug)
 
     local chickenStats = {}
 
-    local startIndex = type == "offspring" and 1 or 4
-    local endIndex = type == "offspring" and 2 or 6
+    local startIndex = type == "offspring" and 4 or 1
+    local endIndex = type == "offspring" and 6 or 2
 
     for i = startIndex, endIndex do
         if peripheral.getItemMeta(i) then -- Needs the Plethora mod to access the NBT data through this method call
