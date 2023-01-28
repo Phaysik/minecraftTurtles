@@ -24,7 +24,7 @@ function inventory.fillInventoryTable()
 end
 
 function inventory.updateInventoryPosition(position)
-    inventory.inventory[position] = turtle.getItemMeta(position)
+    inventory["inventory"][position] = turtle.getItemDetail(position)
     if globals.DEBUG then
         local file = fs.open(globals.INVENTORY_INFORMATION_FILE, "w") -- Debug file
         for i = 1, globals.INVENTORY_AMOUNT do
@@ -42,14 +42,10 @@ function inventory.getPositionOfXInARow(count)
 
     local inARow = 0
 
-    local file = fs.open(globals.INVENTORY_ITEM_COUNT_FILE, "w") -- Debug file
+    local file = fs.open(globals.INVENTORY_POSITION_SLOT_FILE, "w") -- Debug file
     -- We will assume the first position is always holding the turle's fuel
     for i = 2, globals.INVENTORY_AMOUNT do
         local amount = turtle.getItemCount(i)
-
-        if globals.DEBUG then
-            file.write(textutils.serialize(turtle.getItemMeta(i)) .. "\n")
-        end
 
         if amount == 0 then
             inARow = inARow + 1

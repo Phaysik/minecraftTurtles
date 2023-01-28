@@ -9,17 +9,17 @@ local githubName = "Phaysik"
 local repositoryName = "minecraftTurtles" -- The repository must be public for this script to work
 local devBranch = "master"
 
-http.request("https://github.com/" .. githubName .. "/" .. repositoryName .. "/") -- Where all lua scripts are hosted
+local headers = {
+    ["cache-control"] = "no-store"
+}
+
+http.request("https://github.com/" .. githubName .. "/" .. repositoryName .. "/", headers) -- Where all lua scripts are hosted
 
 local requesting = true
 
 local debug = false
 
 local file = fs.open("Debug/siteInfo.json", "w") -- Debug file
-
-local headers = {
-    ["cache-control"] = "no-store"
-}
 
 while requesting do
     ---@diagnostic disable-next-line: undefined-field
