@@ -9,7 +9,7 @@ local githubName = "Phaysik"
 local repositoryName = "minecraftTurtles" -- The repository must be public for this script to work
 local devBranch = "master"
 
-local headers = {
+local headers = { -- I swear to go these do nothing to fix the issue
     ["cache-control"] = "no-store, no-cache, max-age=5, must-revalidate",
     ["Cache-Control"] = "no-store, no-cache, max-age=5, must-revalidate",
 }
