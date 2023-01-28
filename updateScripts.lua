@@ -17,6 +17,10 @@ local debug = false
 
 local file = fs.open("Debug/siteInfo.json", "w") -- Debug file
 
+local headers = {
+    ["Cache-Control"] = "no-store"
+}
+
 while requesting do
     ---@diagnostic disable-next-line: undefined-field
     local statusCode, url, sourceText = os.pullEvent()
@@ -61,7 +65,7 @@ while requesting do
                     print(concatenation)
                 end
 
-                local request = http.get(concatenation)
+                local request = http.get(concatenation, headers)
 
                 if request then
                     local content = request.readAll() -- Read all lines in the lua file
