@@ -4,6 +4,7 @@
         "textutils",
         "fs",
         "peripheral",
-        "http"
+        "http",
+        "turtle"
     ]
 }

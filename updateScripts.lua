@@ -2,7 +2,7 @@
 -- File: updateScripts.lua
 -- Brief: Lua file for creating an update script.
 -- Details: Allows the user to download all lua files located in their github repository at once
--- Date: 01/27/2023
+-- Date: 01/28/2023
 -- Version: 1.0
 
 local githubName = "Phaysik"
@@ -15,7 +15,7 @@ local requesting = true
 
 local debug = false
 
-local file = fs.open("siteInfo.json", "w") -- Debug file
+local file = fs.open("Debug/siteInfo.json", "w") -- Debug file
 
 while requesting do
     ---@diagnostic disable-next-line: undefined-field

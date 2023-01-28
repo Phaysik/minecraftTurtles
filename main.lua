@@ -1,7 +1,7 @@
 -- Author: Matthew Moore
 -- File: main.lua
 -- Brief: Lua file for handling the automation of breeding chickens.
--- Date: 01/27/2023
+-- Date: 01/28/2023
 -- Version: 1.0
 
 -- START CODE STEALING
@@ -48,6 +48,7 @@ end
 
 -- IMPORTS
 local stats = require("checkStats.lua")
+local turtleController = require("turtle.lua")
 local globals = require("globals.lua")
 
 local function main()
@@ -57,10 +58,15 @@ local function main()
     local parentStats = stats.getStats(chickenBreeder, globals.STAT_COMPLETE_FILE, "w", "parents", globals.DEBUG)
     local offspringStats = stats.getStats(chickenBreeder, globals.STAT_COMPLETE_FILE, "a", "offspring", globals.DEBUG)
 
-    -- TODO Get the earliest open spots in the turtles inventory and then pass it to the getRoostStats function, and make sure that there are three open slots in a row
-    local roostParentStats = stats.getRoostStats(parentStats, globals.STAT_ROOST_FILE, "w", "parents", 1, globals.DEBUG)
+    -- TODO Get the earliest open spots in the turtles inventory and then pass it to the getRoostStats function, and make sure that there are three open slots in a row, in the case of three different ofsspring
+    local threeInARowPosition = turtleController.inventory.getPositionOfXInARow(3, globals.INVENTORY_ITEM_COUNT_FILE,
+        globals.DEBUG)
+
     local roostoffspringStats = stats.getRoostStats(offspringStats, globals.STAT_ROOST_FILE, "a", "offspring", 1,
         globals.DEBUG)
+    -- TODO Get the earliest open spots in the turtles inventory and and make sure that there are two open slots in a row, for both parents
+    -- TODO Test to make sure that the seeds will not end up in the parent's spots
+    local roostParentStats = stats.getRoostStats(parentStats, globals.STAT_ROOST_FILE, "w", "parents", 1, globals.DEBUG)
 
     -- TODO get the two highest stats from the offspring stats and then compare against the parent stats
 end

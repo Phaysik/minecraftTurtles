@@ -1,14 +1,13 @@
 -- Author: Matthew Moore
 -- File: checkStats.lua
 -- Brief: Lua file for dealing with the chicken's stats.
--- Details: Contains the function definitions for dealing with the chicken's stats
--- Date: 01/27/2023
+-- Date: 01/28/2023
 -- Version: 1.0
 
 local stats = {}
 
 function stats.getStats(peripheral, outputFile, fileMode, type, debug)
-    local file = fs.open(outputFile, fileMode)
+    local file = fs.open(outputFile, fileMode) -- Debug file
 
     local chickenStats = {}
 
@@ -35,7 +34,7 @@ function stats.getStats(peripheral, outputFile, fileMode, type, debug)
 end
 
 function stats.getRoostStats(completeStats, outputFile, fileMode, type, inventoryPosition, debug)
-    local file = fs.open(outputFile, fileMode)
+    local file = fs.open(outputFile, fileMode) -- Debug file
 
     local roostStats = {}
 
