@@ -9,17 +9,18 @@ local globals = require("globals.lua")
 
 local inventory = {}
 
-inventory["inventoy"] = {}
+inventory["inventory"] = {}
 
 function inventory.fillInventoryTable()
     local file = fs.open(globals.INVENTORY_INFORMATION_FILE, "w") -- Debug file
     for i = 1, globals.INVENTORY_AMOUNT do
-        inventory.inventoy[i] = turtle.getItemMeta(i)
-
+        inventory["inventory"][i] = turtle.getItemDetail(i)
         if globals.DEBUG then
-            file.write("Position " .. i .. ": " .. textutils.serialize(inventory.inventory[i]))
+            file.write("Position " .. i .. ": " .. textutils.serialize(inventory["inventory"][i]))
         end
     end
+
+    file.close()
 end
 
 function inventory.updateInventoryPosition(position)
@@ -27,10 +28,12 @@ function inventory.updateInventoryPosition(position)
     if globals.DEBUG then
         local file = fs.open(globals.INVENTORY_INFORMATION_FILE, "w") -- Debug file
         for i = 1, globals.INVENTORY_AMOUNT do
-            inventory.inventoy[i] = turtle.getItemMeta(i)
+            inventory["inventoy"][i] = turtle.getItemDetail(i)
 
-            file.write("Position " .. i .. ": " .. textutils.serialize(inventory.inventory[i]))
+            file.write("Position " .. i .. ": " .. textutils.serialize(inventory["inventory"][i]))
         end
+
+        file.close()
     end
 end
 
