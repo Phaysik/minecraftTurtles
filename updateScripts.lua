@@ -9,9 +9,11 @@ local githubName = "Phaysik"
 local repositoryName = "minecraftTurtles" -- The repository must be public for this script to work
 local devBranch = "master"
 
-local headers = { -- I swear to go these do nothing to fix the issue
-    ["cache-control"] = "no-store, no-cache, max-age=5, must-revalidate",
-    ["Cache-Control"] = "no-store, no-cache, max-age=5, must-revalidate",
+-- I'm going to leave this here for if I ever decide to come back to it
+-- ! currently this script will only get the newest version of github scripts after 5 minutes due to github's max-age=300
+-- ! Sending this header does not fix the issue for some reason nor did `no-cache`, `no-store`, or `must-revalidate`
+local headers = {
+    ["cache-control"] = "max-age=1",
 }
 
 local repoRequest = http.get("https://github.com/" .. githubName .. "/" .. repositoryName .. "/", headers) -- Where all lua scripts are hosted
