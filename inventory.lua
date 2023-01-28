@@ -85,12 +85,12 @@ function inventory.moveItemsToStart(outputFile, debug)
 end
 
 function inventory.forceMoveToGetXInARow(count, item_count_output_file, item_move_output_file, debug)
-    local XInARow = inventory.getXInARow(count, item_count_output_file, debug)
+    local XInARow = inventory.getPositionOfXInARow(count, item_count_output_file, debug)
 
     while XInARow == -1 do
         inventory.moveItemsToStart(item_move_output_file, debug)
 
-        XInARow = inventory.getXInARow(count, item_count_output_file, debug)
+        XInARow = inventory.getPositionOfXInARow(count, item_count_output_file, debug)
     end
 
     return XInARow
