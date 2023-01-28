@@ -18,7 +18,7 @@ local debug = false
 local file = fs.open("Debug/siteInfo.json", "w") -- Debug file
 
 local headers = {
-    ["Cache-Control"] = "no-store"
+    ["cache-control"] = "no-store"
 }
 
 while requesting do
