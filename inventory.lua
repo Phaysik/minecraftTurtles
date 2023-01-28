@@ -11,7 +11,6 @@ function inventory.getPositionOfXInARow(count, outputFile, debug)
     local inARow = 0
 
     local file = fs.open(outputFile, "w") -- Debug file
-
     -- We will assume the first position is always holding the turle's fuel
     for i = 2, inventoryAmount do
         local amount = turtle.getItemCount(i)
@@ -45,6 +44,23 @@ function inventory.getPositionOfXInARow(count, outputFile, debug)
     file.close()
 
     return -1 -- Will return -1 for no X positions open in a row
+end
+
+function inventory.moveItemsToStart(outputFile, debug)
+    local file = fs.open(outputFile, "w") -- Debug file
+
+    turtle.select(16)
+    if debug then
+        file.write("Compare Result: " .. turtle.compareTo(2))
+    end
+
+    local success = turtle.transferTo(2)
+
+    if debug then
+        file.write("Success: " .. success)
+    end
+
+    file.close()
 end
 
 return inventory

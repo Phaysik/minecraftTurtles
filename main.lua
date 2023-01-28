@@ -62,6 +62,12 @@ local function main()
     local threeInARowPosition = turtleController.inventory.getPositionOfXInARow(3, globals.INVENTORY_ITEM_COUNT_FILE,
         globals.DEBUG)
 
+    while threeInARowPosition == -1 do
+        turtleController.inventory.moveItemsToStart(globals.INVENTORY_MOVE_FILE, globals.DEBUG)
+        threeInARowPosition = turtleController.inventory.getPositionOfXInARow(3, globals.INVENTORY_ITEM_COUNT_FILE,
+            globals.DEBUG)
+    end
+
     local roostoffspringStats = stats.getRoostStats(offspringStats, globals.STAT_ROOST_FILE, "w", "offspring", 1,
         globals.DEBUG)
     -- TODO Get the earliest open spots in the turtles inventory and and make sure that there are two open slots in a row, for both parents
