@@ -26,13 +26,20 @@ function inventory.getPositionOfXInARow(count, outputFile, debug)
             inARow = inARow + 1
 
             if inARow == count then
-                file.write("Starting index of " .. count .. " empty positions is: " .. i - 2)
+                if debug then
+                    file.write("Starting index of " .. count .. " empty positions is: " .. i - 2)
+                end
+
                 file.close()
                 return i - 2
             end
         else
             inARow = 0
         end
+    end
+
+    if debug then
+        file.write("Starting index of " .. count .. " empty positions is: " .. -1)
     end
 
     file.close()
