@@ -16,7 +16,7 @@ function inventory.fillInventoryTable()
     for i = 1, globals.INVENTORY_AMOUNT do
         inventory["inventory"][i] = turtle.getItemDetail(i)
         if globals.DEBUG then
-            file.write("Position " .. i .. ": " .. textutils.serialize(inventory["inventory"][i]))
+            file.write("Position " .. i .. ": " .. textutils.serialize(inventory["inventory"][i]) .. "\n")
         end
     end
 
@@ -30,7 +30,7 @@ function inventory.updateInventoryPosition(position)
         for i = 1, globals.INVENTORY_AMOUNT do
             inventory["inventoy"][i] = turtle.getItemDetail(i)
 
-            file.write("Position " .. i .. ": " .. textutils.serialize(inventory["inventory"][i]))
+            file.write("Position " .. i .. ": " .. textutils.serialize(inventory["inventory"][i]) .. "\n")
         end
 
         file.close()
