@@ -49,10 +49,11 @@ end
 function inventory.moveItemsToStart(outputFile, debug)
     local file = fs.open(outputFile, "w") -- Debug file
     local inventoryAmount = 16
-    local frontPointer = 2
     local backPointer = inventoryAmount
-
     -- Assuming that the turtles fuel is in slot one
+    local frontPointer = 2
+
+    -- Loop until the back slot and the front slot are the same
     while backPointer ~= frontPointer do
         turtle.select(backPointer)
 
@@ -60,27 +61,39 @@ function inventory.moveItemsToStart(outputFile, debug)
             file.write("Compare Result: " .. tostring(turtle.compareTo(3)))
         end
 
-        if turtle.getItemCount(frontPointer) == 0 or turtle.compareTo(frontPointer) then
+        if turtle.getItemCount(frontPointer) == 0 or turtle.compareTo(frontPointer) then -- If not item at the front pointer slot or they are the same item, then transfer
             turtle.transferTo(frontPointer)
 
-            backPointer = backPointer - 1
+            backPointer = backPointer - 1 -- Move the back slot to the left
 
             if debug then
-                file.write("\nTransfered from position: " .. backPointer .. " to position: " .. frontPointer)
+                file.write("\nTransfered from position: " .. backPointer .. " to position: " .. frontPointer .. "\n")
             end
         elseif turtle.getItemCount(backPointer) == 0 then
-            backPointer = backPointer - 1
+            backPointer = backPointer - 1 -- If there are no items in the back slot, then move it to the left
         else
-            frontPointer = frontPointer + 1
+            frontPointer = frontPointer + 1 -- If an item on the front slot and it's not the same as the back slot, move the front slot to the right
 
             if debug then
-                file.write("\nTransfer failed: Items not the same")
+                file.write("\nTransfer failed: Items not the same\n")
             end
         end
 
     end
 
     file.close()
+end
+
+function inventory.forceMoveToGetXInARow(count, item_count_output_file, item_move_output_file, debug)
+    local XInARow = inventory.getXInARow(count, item_count_output_file, debug)
+
+    while XInARow == -1 do
+        inventory.moveItemsToStart(item_move_output_file, debug)
+
+        XInARow = inventory.getXInARow(count, item_count_output_file, debug)
+    end
+
+    return XInARow
 end
 
 return inventory
