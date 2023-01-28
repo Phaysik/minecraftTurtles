@@ -19,13 +19,14 @@ function inventory.getPositionOfXInARow(count, outputFile, debug)
         if debug then
             local itemInfo = { ["Item Detail"] = textutils.serialize(turtle.getItemDetail(i)), ["Amount"] = amount }
 
-            file.write(itemInfo .. "\n")
+            file.write(textutils.serialize(itemInfo) .. "\n")
         end
 
         if amount == 0 then
             inARow = inARow + 1
 
             if inARow == count then
+                file.write("Starting index of " .. count .. " empty positions is: " .. i - 2)
                 file.close()
                 return i - 2
             end
