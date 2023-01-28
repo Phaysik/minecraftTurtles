@@ -48,16 +48,30 @@ end
 
 function inventory.moveItemsToStart(outputFile, debug)
     local file = fs.open(outputFile, "w") -- Debug file
+    local inventoryAmount = 16
+    local frontPointer = 2
 
-    turtle.select(16)
-    if debug then
-        file.write("Compare Result: " .. tostring(turtle.compareTo(2)))
-    end
+    -- Assuming that the turtles fuel is in slot one
+    for i = inventoryAmount, 2, -1 do
+        turtle.select(i)
 
-    local success = turtle.transferTo(2)
+        if debug then
+            file.write("Compare Result: " .. tostring(turtle.compareTo(3)))
+        end
 
-    if debug then
-        file.write("Success: " .. tostring(success))
+        if turtle.getItemCount(frontPointer) == 0 or turtle.compareTo(frontPointer) then
+            turtle.transferTo(frontPointer)
+
+            if debug then
+                file.write("\nTransfered from position: " .. i .. " to position: " .. frontPointer)
+            end
+        else
+            if debug then
+                file.write("\nTransfer failed: Items not the same")
+            end
+        end
+
+        frontPointer = frontPointer + 1
     end
 
     file.close()
