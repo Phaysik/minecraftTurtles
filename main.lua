@@ -65,12 +65,12 @@ local function main()
         threeInARowPosition,
         globals.DEBUG)
 
-    local twoInARowPosition = turtleController.inventory.forceMoveToGetXInARow(2, globals.INVENTORY_ITEM_COUNT_FILE,
-        globals.INVENTORY_MOVE_FILE, globals.DEBUG)
+    -- local twoInARowPosition = turtleController.inventory.forceMoveToGetXInARow(2, globals.INVENTORY_ITEM_COUNT_FILE,
+    --     globals.INVENTORY_MOVE_FILE, globals.DEBUG)
 
-    -- TODO Test to make sure that the seeds will not end up in the parent's spots
-    local roostParentStats = stats.getRoostStats(parentStats, globals.STAT_ROOST_FILE, "a", "parents", twoInARowPosition
-        , globals.DEBUG)
+    -- -- TODO Test to make sure that the seeds will not end up in the parent's spots
+    -- local roostParentStats = stats.getRoostStats(parentStats, globals.STAT_ROOST_FILE, "a", "parents", twoInARowPosition
+    --     , globals.DEBUG)
 
     -- TODO get the two highest stats from the offspring stats and then compare against the parent stats
 end

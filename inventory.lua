@@ -28,7 +28,7 @@ function inventory.updateInventoryPosition(position)
     if globals.DEBUG then
         local file = fs.open(globals.INVENTORY_INFORMATION_FILE, "w") -- Debug file
         for i = 1, globals.INVENTORY_AMOUNT do
-            inventory["inventoy"][i] = turtle.getItemDetail(i)
+            inventory["inventory"][i] = turtle.getItemDetail(i)
 
             file.write("Position " .. i .. ": " .. textutils.serialize(inventory["inventory"][i]) .. "\n")
         end
@@ -56,7 +56,7 @@ function inventory.getPositionOfXInARow(count)
                 end
 
                 file.close()
-                return i - 2
+                return i - count - 1
             end
         else
             inARow = 0
