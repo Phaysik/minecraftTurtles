@@ -61,12 +61,12 @@ local function main()
     -- TODO Get the earliest open spots in the turtles inventory and then pass it to the getRoostStats function, and make sure that there are three open slots in a row, in the case of three different ofsspring
     local threeInARowPosition = turtleController.inventory.getPositionOfXInARow(3, globals.INVENTORY_ITEM_COUNT_FILE,
         globals.DEBUG)
+    turtleController.inventory.moveItemsToStart(globals.INVENTORY_MOVE_FILE, globals.DEBUG)
 
-    while threeInARowPosition == -1 do
-        turtleController.inventory.moveItemsToStart(globals.INVENTORY_MOVE_FILE, globals.DEBUG)
-        threeInARowPosition = turtleController.inventory.getPositionOfXInARow(3, globals.INVENTORY_ITEM_COUNT_FILE,
-            globals.DEBUG)
-    end
+    -- while threeInARowPosition == -1 do
+    -- threeInARowPosition = turtleController.inventory.getPositionOfXInARow(3, globals.INVENTORY_ITEM_COUNT_FILE,
+    -- globals.DEBUG)
+    -- end
 
     local roostoffspringStats = stats.getRoostStats(offspringStats, globals.STAT_ROOST_FILE, "w", "offspring", 1,
         globals.DEBUG)

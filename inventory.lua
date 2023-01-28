@@ -51,13 +51,13 @@ function inventory.moveItemsToStart(outputFile, debug)
 
     turtle.select(16)
     if debug then
-        file.write("Compare Result: " .. turtle.compareTo(2))
+        file.write("Compare Result: " .. tostring(turtle.compareTo(2)))
     end
 
     local success = turtle.transferTo(2)
 
     if debug then
-        file.write("Success: " .. success)
+        file.write("Success: " .. tostring(success))
     end
 
     file.close()
