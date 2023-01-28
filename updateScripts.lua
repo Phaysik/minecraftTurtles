@@ -10,7 +10,7 @@ local repositoryName = "minecraftTurtles" -- The repository must be public for t
 local devBranch = "master"
 
 local headers = {
-    ["cache-control"] = "no-store"
+    ["Cache-Control"] = "no-cache, max-age=10, must-revalidate",
 }
 
 local repoRequest = http.get("https://github.com/" .. githubName .. "/" .. repositoryName .. "/", headers) -- Where all lua scripts are hosted
