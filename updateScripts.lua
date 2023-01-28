@@ -13,7 +13,7 @@ local headers = {
     ["cache-control"] = "no-store"
 }
 
-http.request { url = "https://github.com/" .. githubName .. "/" .. repositoryName .. "/", header = headers } -- Where all lua scripts are hosted
+http.request { url = "https://github.com/" .. githubName .. "/" .. repositoryName .. "/", headers = headers } -- Where all lua scripts are hosted
 
 local requesting = true
 
