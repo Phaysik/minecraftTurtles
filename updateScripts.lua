@@ -13,10 +13,11 @@ local devBranch = "master"
 -- ! currently this script will only get the newest version of github scripts after 5 minutes due to github's max-age=300
 -- ! Sending this header does not fix the issue for some reason nor did `no-cache`, `no-store`, or `must-revalidate`
 local headers = {
-    ["cache-control"] = "max-age=1",
+    ["Cache-Control"] = "no-store",
 }
 
-local repoRequest = http.get("https://github.com/" .. githubName .. "/" .. repositoryName .. "/", headers) -- Where all lua scripts are hosted
+local repoRequest = http.get("https://github.com/" .. githubName .. "/" .. repositoryName .. "/",
+    { ["Cache-Control"] = "no-store" })                                                                                               -- Where all lua scripts are hosted
 
 local debug = false
 
@@ -27,7 +28,7 @@ if repoRequest then
 
     local files = {}
 
-    while line do -- Loop through all lines returned by the request
+    while line do                      -- Loop through all lines returned by the request
         if string.find(line, ".lua") then
             local regex = "a\">.*.lua" -- Get a\">[fileName].lua from any line that has a .lua
             local fileName = ""
@@ -53,9 +54,11 @@ if repoRequest then
     end
 
     for _, value in pairs(files) do -- Loop through all lua files
-        if value ~= "" then -- Ignore the empty filename that is somehow added
+        if value ~= "" then         -- Ignore the empty filename that is somehow added
             local concatenation = "https://raw.githubusercontent.com/" ..
-                githubName .. "/" .. repositoryName .. "/" .. devBranch .. "/" .. value -- Get the raw data of the lua files
+                githubName ..
+                "/" ..
+                repositoryName .. "/" .. devBranch .. "/" .. value -- Get the raw data of the lua files
 
             if debug then
                 file.write(value)
@@ -80,5 +83,4 @@ if repoRequest then
     end
 
     file.close()
-
 end
