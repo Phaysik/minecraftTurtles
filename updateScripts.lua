@@ -64,7 +64,7 @@ if repoRequest then
                 file.write(value)
             end
 
-            local request = http.get(concatenation, headers)
+            local request = http.get(concatenation, { ["Cache-Control"] = "no-cache" })
 
             if request then
                 local content = request.readAll() -- Read all lines in the lua file
