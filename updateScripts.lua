@@ -5,6 +5,7 @@
 -- Date: 01/28/2023
 -- Version: 1.0
 
+
 local githubName = "Phaysik"
 local repositoryName = "minecraftTurtles" -- The repository must be public for this script to work
 local devBranch = "master"
@@ -51,6 +52,20 @@ if repoRequest then
 
     if debug then
         file.write(textutils.serialize(files))
+    end
+
+    -- Get the current directory
+    local currentDirectory = shell.dir()
+
+    -- List all files in the current directory
+    local currentDirectoryFiles = fs.list(currentDirectory)
+
+    -- Remove files with the ".lua" extension
+    for _, directoryFile in ipairs(currentDirectoryFiles) do
+        if fs.isDir(directoryFile) == false and directoryFile:match("%.lua$") then
+            fs.delete(directoryFile)
+            print("Deleted File: " .. directoryFile)
+        end
     end
 
     for _, value in pairs(files) do -- Loop through all lua files
