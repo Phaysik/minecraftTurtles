@@ -13,7 +13,7 @@ local devBranch = "master"
 -- ! currently this script will only get the newest version of github scripts after 5 minutes due to github's max-age=300
 -- ! Sending this header does not fix the issue for some reason nor did `no-cache`, `no-store`, or `must-revalidate`
 local headers = {
-    ["Cache-Control"] = "no-cache",
+    ["Cache-Control"] = "no-store",
 }
 
 local repoRequest = http.get("https://github.com/" .. githubName .. "/" .. repositoryName .. "/",
